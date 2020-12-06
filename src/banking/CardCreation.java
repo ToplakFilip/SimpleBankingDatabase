@@ -2,7 +2,6 @@ package banking;
 
 import java.util.HashSet;
 import java.util.Random;
-import java.lang.Math;
 
 public class CardCreation {
 
@@ -10,7 +9,7 @@ public class CardCreation {
     private HashSet<String> duplicateCheck = new HashSet<>();
 
     protected CreditCard createNewAccount() {
-        Long cardNum = createNewCreditCard();
+        String cardNum = createNewCreditCard();
         System.out.println("Your card number:\n" + cardNum);
         String pin = createNewPIN();
         System.out.println("Your card PIN:\n" + pin);
@@ -38,7 +37,7 @@ public class CardCreation {
         return builder.toString();
     }
 
-    private Long createNewCreditCard() {
+    private String createNewCreditCard() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("400000");
@@ -46,7 +45,7 @@ public class CardCreation {
         builder.append(number);
 
         builder.append(checkSum(builder.toString()));
-        return Long.parseLong(builder.toString());
+        return builder.toString();
     }
 
     private int checkSum(String initialNumber) {

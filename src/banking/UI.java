@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class UI {
 
     private final Scanner scan = new Scanner(System.in);
-    private final AccountStorage accountStorage = new AccountStorage();
+    private AccountStorage accountStorage;
     private final CardCreation cardCreation = new CardCreation();
 
-    protected void Start() {
+    protected void Start(String argInput) {
+
+        this.accountStorage = new AccountStorage(argInput);
+        accountStorage.printit();
 
         boolean programRunning = true;
         while (programRunning) {
@@ -18,7 +21,7 @@ public class UI {
 
             switch (input) {
                 case "1":
-                    System.out.println("Your card has been created");
+                    System.out.println("Your card has been created\n");
                     CreditCard card = cardCreation.createNewAccount();
                     this.accountStorage.addAccount(card);
                     System.out.print("\n");
@@ -26,13 +29,13 @@ public class UI {
                     break;
                 case "2":
                     System.out.println("Enter your card number: ");
-                    Long enteredNumber = scan.nextLong();
+                    String enteredNumber = scan.next(); // AK NECE RADIT OVO BI MOGLO BIT
                     System.out.println("Enter your PIN: ");
                     String enteredPin = scan.next();
                     scan.nextLine();
                     System.out.print("\n");
 
-                    if (this.accountStorage.logInValidation(enteredNumber, enteredPin)) {
+                    if (this.accountStorage.logInValidation(enteredPin, enteredNumber)) {
                         System.out.println("You have successfully logged in!\n");
                         boolean quitProgram = cardBalanceUI(enteredPin);
                         if (quitProgram) {

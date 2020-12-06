@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class CreditCard {
     private final String PIN;
-    private final Long cardNumber;
+    private final String cardNumber;
     private final int balance;
 
 
-    CreditCard(String PIN, Long cardNumber) {
+    CreditCard(String PIN, String cardNumber) {
         this.PIN = PIN;
         this.cardNumber = cardNumber;
         this.balance = 0;
@@ -21,6 +21,7 @@ public class CreditCard {
     String getPIN() {
         return PIN;
     }
+    String getCardNumber() { return String.valueOf(cardNumber);}
 
     @Override
     public int hashCode() {
