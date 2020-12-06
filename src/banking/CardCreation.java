@@ -6,7 +6,7 @@ import java.util.Random;
 public class CardCreation {
 
     private final Random rand = new Random();
-    private HashSet<String> duplicateCheck = new HashSet<>();
+    private final HashSet<String> duplicateCheck = new HashSet<>();
 
     protected CreditCard createNewAccount() {
         String cardNum = createNewCreditCard();
@@ -66,7 +66,6 @@ public class CardCreation {
             sum += number;
             doublingCounter++;
         }
-
         int broj = 10 - (sum % 10);
         if (broj == 10) broj = 0;
         return broj;
